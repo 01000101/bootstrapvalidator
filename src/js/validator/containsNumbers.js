@@ -31,13 +31,13 @@
             var message = options.message || $.fn.bootstrapValidator.i18n.containsNumbers['default'];
             var isValid = false;
            
-            // Blank value?  Denied!
+            // Blank value?  I guess that makes it "valid"...
             if ( value === '' )
                 return true;
            
             // Minimum required numbers more than the length of the input?  Denied!
             if ( parseInt(min) > value.length )
-                return true;
+                return false;
 
             // Count the number of numbers in the string
             var nNumbers = value.replace(/[^0-9]/g,"").length;
@@ -60,7 +60,7 @@
                     $.fn.bootstrapValidator.i18n.containsNumbers.message_more,
                     [parseInt(min, 10)]);
                 isValid = (nNumbers >= min);
-            } else return true; // Neither are defined... Denied!
+            } else return false; // Neither are defined... Denied!
            
             return { valid: isValid, message: message }
         }
